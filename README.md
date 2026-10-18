@@ -2,6 +2,8 @@
 
 A full-stack application using Flask for both frontend and backend services, demonstrating environment-specific ticket management.
 
+# Docker Compose instructions with containers are here: https://github.com/mithlesh008/multienv-deployment-mithilesh/blob/main/MultienvApp-README.md
+
 ## Project Structure
 
 ```
