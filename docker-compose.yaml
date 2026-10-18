@@ -1,0 +1,67 @@
+services:
+  mongo-dev:
+    image: mongo:7.0
+    restart: unless-stopped
+    volumes:
+      - mongo-dev-data:/data/db
+    networks:
+      - multienv
+
+  mongo-prod:
+    image: mongo:7.0
+    restart: unless-stopped
+    volumes:
+      - mongo-prod-data:/data/db
+    networks:
+      - multienv
+
+  dev-backend:
+    build:
+      context: ./backend/dev
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      PORT: "3001"
+      MONGO_URI: "mongodb://mongo-dev:27017/tickets_dev"
+    depends_on:
+      - mongo-dev
+    ports:
+      - "3001:3001"
+    networks:
+      - multienv
+
+  prod-backend:
+    build:
+      context: ./backend/prod
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      PORT: "3002"
+      MONGO_URI: "mongodb://mongo-prod:27017/tickets_prod"
+    depends_on:
+      - mongo-prod
+    ports:
+      - "3002:3002"
+    networks:
+      - multienv
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - dev-backend
+      - prod-backend
+    ports:
+      - "3000:3000"
+    networks:
+      - multienv
+
+networks:
+  multienv:
+    driver: bridge
+
+volumes:
+  mongo-dev-data:
+  mongo-prod-data:
