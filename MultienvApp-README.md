@@ -2,7 +2,7 @@
 
 A Dockerized full-stack ticket management application with separate development and production backend environments.
 
-Repository: <https://github.com/mithlesh008/MultienvApp>
+Repository: <https://github.com/mithlesh008/multienv-deployment-mithilesh>
 
 ## Overview
 
@@ -115,8 +115,8 @@ Do not commit real `.env` files, credentials, API keys, or production secrets. U
 Clone the repository:
 
 ```bash
-git clone https://github.com/mithlesh008/MultienvApp.git
-cd MultienvApp
+git clone https://github.com/mithlesh008/multienv-deployment-mithilesh.git
+cd multienv-deployment-mithilesh
 ```
 
 Build and start all services:
@@ -360,7 +360,3 @@ git status
 * Use separate databases and volumes for development and production.
 * Use strong, environment-specific secrets outside source control.
 * Review Docker logs before sharing them because they may contain configuration values.
-
-## License
-
-This project is available under the MIT License.
